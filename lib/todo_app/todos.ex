@@ -36,6 +36,7 @@ defmodule TodoApp.Todos do
 
   """
   def get_todo!(id), do: Repo.get!(Todo, id)
+  def get_todo_with_list!(id), do: Repo.get!(Todo, id) |> Repo.preload(:todo_list)
 
   @doc """
   Creates a todo.
@@ -102,99 +103,101 @@ defmodule TodoApp.Todos do
     Todo.changeset(todo, attrs)
   end
 
-  alias TodoApp.Todos.User
+  alias TodoApp.Todos.TodoList
 
   @doc """
-  Returns the list of users.
+  Returns the list of todos_lists.
 
   ## Examples
 
-      iex> list_users()
-      [%User{}, ...]
+      iex> list_todos_lists()
+      [%TodoList{}, ...]
 
   """
-  def list_users do
-    Repo.all(User)
+  def list_todos_lists do
+    Repo.all(TodoList)
   end
 
   @doc """
-  Gets a single user.
+  Gets a single todo_list.
 
-  Raises `Ecto.NoResultsError` if the User does not exist.
+  Raises `Ecto.NoResultsError` if the Todo list does not exist.
 
   ## Examples
 
-      iex> get_user!(123)
-      %User{}
+      iex> get_todo_list!(123)
+      %TodoList{}
 
-      iex> get_user!(456)
+      iex> get_todo_list!(456)
       ** (Ecto.NoResultsError)
 
   """
-  def get_user!(id), do: Repo.get!(User, id)
+  def get_todo_list!(id), do: Repo.get!(TodoList, id)
+
+  def get_todo_list_with_todos!(id), do: Repo.get!(TodoList, id) |> Repo.preload(:todos)
 
   @doc """
-  Creates a user.
+  Creates a todo_list.
 
   ## Examples
 
-      iex> create_user(%{field: value})
-      {:ok, %User{}}
+      iex> create_todo_list(%{field: value})
+      {:ok, %TodoList{}}
 
-      iex> create_user(%{field: bad_value})
+      iex> create_todo_list(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_user(attrs \\ %{}) do
-    %User{}
-    |> User.changeset(attrs)
+  def create_todo_list(attrs \\ %{}) do
+    %TodoList{}
+    |> TodoList.changeset(attrs)
     |> Repo.insert()
   end
 
   @doc """
-  Updates a user.
+  Updates a todo_list.
 
   ## Examples
 
-      iex> update_user(user, %{field: new_value})
-      {:ok, %User{}}
+      iex> update_todo_list(todo_list, %{field: new_value})
+      {:ok, %TodoList{}}
 
-      iex> update_user(user, %{field: bad_value})
+      iex> update_todo_list(todo_list, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_user(%User{} = user, attrs) do
-    user
-    |> User.changeset(attrs)
+  def update_todo_list(%TodoList{} = todo_list, attrs) do
+    todo_list
+    |> TodoList.changeset(attrs)
     |> Repo.update()
   end
 
   @doc """
-  Deletes a user.
+  Deletes a todo_list.
 
   ## Examples
 
-      iex> delete_user(user)
-      {:ok, %User{}}
+      iex> delete_todo_list(todo_list)
+      {:ok, %TodoList{}}
 
-      iex> delete_user(user)
+      iex> delete_todo_list(todo_list)
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_user(%User{} = user) do
-    Repo.delete(user)
+  def delete_todo_list(%TodoList{} = todo_list) do
+    Repo.delete(todo_list)
   end
 
   @doc """
-  Returns an `%Ecto.Changeset{}` for tracking user changes.
+  Returns an `%Ecto.Changeset{}` for tracking todo_list changes.
 
   ## Examples
 
-      iex> change_user(user)
-      %Ecto.Changeset{data: %User{}}
+      iex> change_todo_list(todo_list)
+      %Ecto.Changeset{data: %TodoList{}}
 
   """
-  def change_user(%User{} = user, attrs \\ %{}) do
-    User.changeset(user, attrs)
+  def change_todo_list(%TodoList{} = todo_list, attrs \\ %{}) do
+    TodoList.changeset(todo_list, attrs)
   end
 end

@@ -5,13 +5,12 @@
     </div>
   <% end %>
 
+  <%= hidden_input f, :user_id %>
+  <%= hidden_input f, :todo_list_id %>
+
   <%= label f, :description %>
   <%= text_input f, :description %>
   <%= error_tag f, :description %>
-
-  <%= label f, :done %>
-  <%= checkbox f, :done %>
-  <%= error_tag f, :done %>
 
   <%= label f, :expiration %>
   <%= datetime_select f, :expiration %>

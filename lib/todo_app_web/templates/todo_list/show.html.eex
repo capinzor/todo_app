@@ -1,0 +1,16 @@
+<h1>Show Todo list</h1>
+
+<h2><%= @todo_list.name %></h2>
+<h3>Tasks:</h3>
+<ul>
+  <%= for todo <- @todo_list.todos do %>
+    <li><%= todo.description %></li>
+  <% end %>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.todo_list_path(@conn, :edit, @todo_list) %></span>
+<span><%= link "Back", to: Routes.todo_list_path(@conn, :index) %></span>
+<br>
+<br>
+<span><%= link "New Todo for this List", to: Routes.todo_path(@conn, :new, todo_list_id: @todo_list.id) %></span>

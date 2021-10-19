@@ -1,23 +1,26 @@
-<ul>
-  <li>Hola mundo</li>
-  <li>Hola mundo</li>
-  <li>Hola mundo</li>
-  <li>Hola mundo</li>
-  <li>Hola mundo</li>
-</ul>
+<h1>Listing Todos lists</h1>
+
 <table>
   <thead>
     <tr>
-      <th>Header 1</th>
-      <th>Header 2</th>
-      <th>Header 3</th>
+      <th>Name</th>
+
+      <th></th>
     </tr>
   </thead>
   <tbody>
+<%= for todo_list <- @todos_lists do %>
     <tr>
-      <td>Value</td>
-      <td>Value</td>
-      <td>Value</td>
+      <td><%= todo_list.name %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.todo_list_path(@conn, :show, todo_list) %></span>
+        <span><%= link "Edit", to: Routes.todo_list_path(@conn, :edit, todo_list) %></span>
+        <span><%= link "Delete", to: Routes.todo_list_path(@conn, :delete, todo_list), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
     </tr>
+<% end %>
   </tbody>
 </table>
+
+<span><%= link "New Todo list", to: Routes.todo_list_path(@conn, :new) %></span>

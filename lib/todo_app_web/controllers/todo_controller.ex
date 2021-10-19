@@ -9,8 +9,19 @@ defmodule TodoAppWeb.TodoController do
     render(conn, "index.html", todos: todos)
   end
 
+  def new(conn, %{"todo_list_id" => todo_list_id}) do
+    user = conn.assigns.current_user
+    todo_list = Todos.get_todo_list!(todo_list_id)
+
+    changeset =
+      Todos.change_todo(%Todo{}, %{"user_id" => user.id, "todo_list_id" => todo_list.id})
+
+    render(conn, "new.html", changeset: changeset, todo_list: todo_list)
+  end
+
   def new(conn, _params) do
-    changeset = Todos.change_todo(%Todo{})
+    user = conn.assigns.current_user
+    changeset = Todos.change_todo(%Todo{}, %{"user_id" => user.id})
     render(conn, "new.html", changeset: changeset)
   end
 
