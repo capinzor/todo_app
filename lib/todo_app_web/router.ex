@@ -17,12 +17,14 @@ defmodule TodoAppWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    resources "/todos", TodoController
+    get "/list", TodoListController, :index
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", TodoAppWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", TodoAppWeb do
+    pipe_through :api
+  end
 
   # Enables LiveDashboard only for development
   #

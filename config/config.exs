@@ -13,10 +13,10 @@ config :todo_app,
 # Configures the endpoint
 config :todo_app, TodoAppWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "4QgF/h+Sd7nbvi1o0SQjgK3yohm7KaRm4B1JYnh3hEy+w1FW2V5CgCzmbjOpa/U5",
+  secret_key_base: "aSpf86M0T3fXYkkkMqY6cpW71B9Un1+yV6o/ZUza+gm9RAtgr+WF9WXrtKIZf6QD",
   render_errors: [view: TodoAppWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: TodoApp.PubSub,
-  live_view: [signing_salt: "DurHIzF4"]
+  live_view: [signing_salt: "xaC1H/vL"]
 
 # Configures Elixir's Logger
 config :logger, :console,

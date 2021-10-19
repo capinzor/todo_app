@@ -7,7 +7,7 @@ defmodule TodoAppWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_todo_app_key",
-    signing_salt: "ay2EBm8I"
+    signing_salt: "AvQ507Kx"
   ]
 
   socket "/socket", TodoAppWeb.UserSocket,
