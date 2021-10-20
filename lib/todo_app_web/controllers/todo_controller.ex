@@ -38,7 +38,7 @@ defmodule TodoAppWeb.TodoController do
   end
 
   def show(conn, %{"id" => id}) do
-    todo = Todos.get_todo!(id)
+    todo = Todos.get_todo_with_list!(id)
     render(conn, "show.html", todo: todo)
   end
 

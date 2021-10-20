@@ -16,6 +16,12 @@
     <strong>Expiration:</strong>
     <%= @todo.expiration %>
   </li>
+  <li>
+    <strong>List:</strong>
+    <%= link to: Routes.todo_list_path(@conn, :show, @todo.todo_list.id) do %>
+      <%= @todo.todo_list.name %>
+    <% end %>
+  </li>
 
 </ul>
 

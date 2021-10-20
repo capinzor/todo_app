@@ -69,6 +69,7 @@ defmodule TodoAppWeb.Router do
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
     resources "/todos", TodoController
     resources "/todos_lists", TodoListController
+    get "/todos_lists/:id/collaborators", TodoListController, :collaborators
   end
 
   scope "/", TodoAppWeb do
